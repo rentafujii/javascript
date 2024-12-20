@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10秒カウントダウン</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+        }
+        .timer {
+            font-size: 5rem;
+            font-weight: bold;
+        }
+        .timer.red {
+            color: red;
+        }
+        .message {
+            font-size: 3rem;
+            color: green;
+            margin-top: 20px;
+        }
+        .title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="title">カウントダウン色変更</div>
+        <div id="countdown" class="timer">10</div>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        let countdown = 10;
+        const countdownElement = document.getElementById('countdown');
+        const messageElement = document.getElementById('message');
+
+        const timer = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+
+            // 3秒以下で赤くする
+            if (countdown <= 3) {
+                countdownElement.classList.add('red');
+            }
+
+            // カウントダウン終了
+            if (countdown === 0) {
+                clearInterval(timer);
+                countdownElement.textContent = "";
+                messageElement.textContent = "タイムアップ！";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
